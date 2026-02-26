@@ -15,14 +15,11 @@
         html { scroll-behavior: smooth; }
         body { margin: 0; padding: 0; background-color: var(--bg); color: var(--text); padding-bottom: 80px; }
         
-        /* === MUDANÇA NO CABEÇALHO AQUI === */
         header { 
-            /* Coloque o link da sua imagem de fundo entre as aspas abaixo: */
-            background-image: url('https://i.postimg.cc/xdGbrSTr/Sem-titulo-1.png');
+            background-image: url('https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            
             color: white; 
             padding: 20px; 
             text-align: center; 
@@ -34,9 +31,8 @@
         header h1 { 
             margin: 0; 
             font-size: 24px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8); /* Sombra no texto para leitura fácil */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
         }
-        /* ================================== */
         
         .loja-logo {
             max-width: 150px; 
@@ -45,7 +41,7 @@
             border-radius: 8px; 
             box-shadow: 0 2px 10px rgba(0,0,0,0.5);
             position: relative;
-            z-index: 1; /* Garante que a logo fique acima do overlay da imagem */
+            z-index: 1; 
         }
 
         .container { max-width: 800px; margin: 0 auto; padding: 15px; }
@@ -65,41 +61,18 @@
         .btn-secondary { background-color: #ccc; color: black; }
 
         .categoria-menu {
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            scrollbar-width: none; 
+            display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 20px; scrollbar-width: none; 
         }
         .categoria-menu::-webkit-scrollbar { display: none; }
         
         .btn-categoria {
-            background-color: white;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-            padding: 8px 15px;
-            border-radius: 20px;
-            white-space: nowrap;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 14px;
-            transition: all 0.3s;
+            background-color: white; color: var(--primary); border: 2px solid var(--primary);
+            padding: 8px 15px; border-radius: 20px; white-space: nowrap; cursor: pointer;
+            font-weight: bold; font-size: 14px; transition: all 0.3s;
         }
-        .btn-categoria:hover {
-            background-color: var(--primary);
-            color: white;
-        }
+        .btn-categoria:hover { background-color: var(--primary); color: white; }
 
-        .categoria-titulo {
-            font-size: 22px;
-            color: var(--primary);
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 5px;
-            margin-top: 20px;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
+        .categoria-titulo { font-size: 22px; color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 5px; margin-top: 20px; margin-bottom: 15px; text-transform: uppercase; }
 
         .produtos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; margin-bottom: 20px; }
         .produto-card { background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; position: relative; }
@@ -115,31 +88,29 @@
         .add-cart button { width: 35px; height: 35px; font-size: 20px; border: none; background: var(--primary); color: white; border-radius: 5px; cursor: pointer; }
         .add-cart span { font-weight: bold; font-size: 18px; }
 
-        .sticky-footer {
-            position: fixed; bottom: 0; left: 0; width: 100%; background: white; box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
-            padding: 15px; display: flex; justify-content: space-between; align-items: center; z-index: 1000;
-        }
+        .sticky-footer { position: fixed; bottom: 0; left: 0; width: 100%; background: white; box-shadow: 0 -2px 10px rgba(0,0,0,0.2); padding: 15px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; }
         .cart-info { display: flex; flex-direction: column; }
         .cart-total { font-size: 18px; font-weight: bold; color: var(--secondary); }
         .btn-whatsapp { background-color: #25D366; color: white; }
 
         #loading { text-align: center; padding: 20px; font-weight: bold; }
 
-        .modal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center;
-            z-index: 2000; padding: 15px;
-        }
-        .modal-content {
-            background: white; padding: 20px; border-radius: 8px; width: 100%; max-width: 500px;
-            max-height: 90vh; overflow-y: auto; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 2000; padding: 15px; }
+        .modal-content { background: white; padding: 20px; border-radius: 8px; width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
         .modal-content h2 { margin-top: 0; color: var(--primary); border-bottom: 2px solid #eee; padding-bottom: 10px; }
         #resumoPedidoHtml { margin-bottom: 20px; font-size: 16px; line-height: 1.5; }
         #resumoPedidoHtml p { margin: 5px 0; }
         #resumoPedidoHtml ul { margin: 5px 0; padding-left: 20px; }
-        .modal-buttons { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
+        .modal-buttons { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; margin-top: 20px; }
         .modal-buttons .btn { flex-grow: 1; text-align: center; }
+
+        /* Estilos da área do Pix */
+        .pix-area { text-align: center; margin-top: 20px; padding: 15px; border: 2px dashed var(--secondary); border-radius: 8px; background-color: #f1f8e9; }
+        .pix-area h3 { color: var(--secondary); margin-top: 0; margin-bottom: 5px; }
+        .pix-area p { font-size: 14px; color: #555; margin-bottom: 10px; }
+        .pix-area img { width: 200px; height: 200px; margin: 0 auto; display: block; border: 5px solid white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .pix-copia-cola { display: flex; gap: 5px; margin-top: 15px; }
+        .pix-copia-cola input { flex-grow: 1; font-size: 12px; padding: 8px; background-color: white; color: #666; }
     </style>
 </head>
 <body>
@@ -161,7 +132,7 @@
                 <label>Como deseja receber?</label>
                 <select id="tipoEntrega" onchange="toggleEntrega()">
                     <option value="">Selecione...</option>
-                    <option value="Entrega">Entrega</option>
+                    <option value="Entrega">Entrega (Delivery)</option>
                     <option value="Retirada">Retirada no Local</option>
                 </select>
             </div>
@@ -186,6 +157,7 @@
                 <select id="formaPagamento" onchange="togglePagamento()">
                     <option value="">Selecione...</option>
                     <option value="Pix">Pix</option>
+                    <option value="Cartão">Cartão (Crédito/Débito)</option>
                     <option value="Dinheiro">Dinheiro</option>
                 </select>
             </div>
@@ -206,8 +178,7 @@
 
         <div id="loading">Carregando produtos da planilha...</div>
         
-        <div id="listaProdutos">
-            </div>
+        <div id="listaProdutos"></div>
     </div>
 
     <div class="sticky-footer">
@@ -221,8 +192,19 @@
     <div id="modalRevisao" class="modal hidden">
         <div class="modal-content">
             <h2>Confira seu Pedido</h2>
-            <div id="resumoPedidoHtml">
+            <div id="resumoPedidoHtml"></div>
+            
+            <div id="pixArea" class="pix-area hidden">
+                <h3>Pague com Pix</h3>
+                <p>Escaneie o QR Code ou copie o código abaixo para pagar direto no app do seu banco. Depois de pagar, clique em Confirmar e Enviar.</p>
+                <img id="qrCodePix" src="" alt="QR Code Pix">
+                
+                <div class="pix-copia-cola">
+                    <input type="text" id="codigoPixCopiaCola" readonly>
+                    <button class="btn btn-primary" onclick="copiarPix()">Copiar</button>
                 </div>
+            </div>
+
             <div class="modal-buttons">
                 <button class="btn btn-secondary" onclick="fecharRevisao()">Voltar e Alterar</button>
                 <button class="btn btn-whatsapp" onclick="confirmarEnvioWhatsApp()">Confirmar e Enviar 📲</button>
@@ -232,9 +214,11 @@
 
     <script>
         // === CONFIGURAÇÕES ===
-        const WHATSAPP_NUMERO = "5512997093704"; // Número da loja
+        const WHATSAPP_NUMERO = "5512997093704"; // Número do seu WhatsApp
         
-        // COLOQUE AQUI O LINK DO SEU WEB APP DO APPS SCRIPT:
+        // CHAVE PIX: Se for celular, TEM que ter o +55. Ex: +5512997093704
+        const CHAVE_PIX = "+5512997093704"; 
+        
         const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbySMCXvSkimbv0w-lIjrTP0bg_0VEpIZ_dlZs5yezfTmB6aTuligyucDSYNKqcWwDfKeA/exec"; 
         
         let produtos = [];
@@ -245,15 +229,9 @@
             const dataInput = document.getElementById('dataPedido');
             const hoje = new Date().toISOString().split('T')[0];
             dataInput.setAttribute('min', hoje);
-            
-            if(WEB_APP_URL === "COLE_AQUI_O_LINK_DO_SEU_WEB_APP") {
-                carregarDadosDeTeste();
-            } else {
-                carregarDoGoogleSheets();
-            }
+            carregarDoGoogleSheets();
         });
 
-        // Controles do Formulário
         function toggleEntrega() {
             const tipo = document.getElementById('tipoEntrega').value;
             document.getElementById('divEnderecoCliente').classList.toggle('hidden', tipo !== 'Entrega');
@@ -265,7 +243,6 @@
             document.getElementById('divTroco').classList.toggle('hidden', pagamento !== 'Dinheiro');
         }
 
-        // Busca
         function buscarProdutos() {
             const termo = document.getElementById('searchInput').value.toLowerCase();
             renderizarProdutos(produtos.filter(p => 
@@ -280,7 +257,6 @@
             renderizarProdutos(produtos);
         }
 
-        // Carrinho
         function alterarQuantidade(codigo, delta) {
             if (!carrinho[codigo]) carrinho[codigo] = 0;
             carrinho[codigo] += delta;
@@ -306,7 +282,6 @@
             document.getElementById('valorTotal').innerText = `Total: R$ ${total.toFixed(2).replace('.', ',')}`;
         }
 
-        // Rolagem suave para a categoria
         function scrollToCategoria(idCategoria) {
             const elemento = document.getElementById(idCategoria);
             if(elemento) {
@@ -315,7 +290,6 @@
             }
         }
 
-        // Renderização Dividida por Categorias e Menu de Botões
         function renderizarProdutos(lista) {
             const divLista = document.getElementById('listaProdutos');
             const menuCategorias = document.getElementById('menuCategorias');
@@ -331,30 +305,32 @@
             const produtosPorCategoria = {};
             lista.forEach(prod => {
                 const categoria = prod.tipo || 'Outros';
-                if (!produtosPorCategoria[categoria]) {
-                    produtosPorCategoria[categoria] = [];
-                }
+                if (!produtosPorCategoria[categoria]) produtosPorCategoria[categoria] = [];
                 produtosPorCategoria[categoria].push(prod);
+            });
+
+            const categoriasOrdenadas = Object.keys(produtosPorCategoria).sort((a, b) => {
+                const catA = a.toLowerCase();
+                const catB = b.toLowerCase();
+                if (catA.includes('fruta') && !catB.includes('fruta')) return -1;
+                if (!catA.includes('fruta') && catB.includes('fruta')) return 1;
+                if (catA.includes('congelado') && !catB.includes('congelado')) return -1;
+                if (!catA.includes('congelado') && catB.includes('congelado')) return 1;
+                return catA.localeCompare(catB);
             });
 
             let htmlFinal = '';
             let htmlMenu = '';
 
-            for (const categoria in produtosPorCategoria) {
+            for (const categoria of categoriasOrdenadas) {
                 const idCategoria = "cat-" + categoria.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '-').toLowerCase();
-
                 htmlMenu += `<button class="btn-categoria" onclick="scrollToCategoria('${idCategoria}')">${categoria}</button>`;
-
-                htmlFinal += `<h2 id="${idCategoria}" class="categoria-titulo">${categoria}</h2>`;
-                
-                htmlFinal += `<div class="produtos-grid">`;
+                htmlFinal += `<h2 id="${idCategoria}" class="categoria-titulo">${categoria}</h2><div class="produtos-grid">`;
                 
                 produtosPorCategoria[categoria].forEach(prod => {
                     const qtdAtual = carrinho[prod.codigo] || 0;
-                    
                     const disponivelStr = prod.disponivel ? String(prod.disponivel).trim().toLowerCase() : "";
                     const esgotado = disponivelStr === 'não' || disponivelStr === 'nao';
-
                     const emPromocao = prod.promocao && prod.promocao.toLowerCase() === 'sim';
                     
                     htmlFinal += `
@@ -367,7 +343,6 @@
                                 <h4 class="produto-nome">${prod.nome}</h4>
                                 <p class="produto-desc">${prod.descricao}</p>
                                 <span class="produto-preco">R$ ${parseFloat(prod.preco).toFixed(2).replace('.', ',')}</span>
-                                
                                 <div class="add-cart">
                                     <button onclick="alterarQuantidade('${prod.codigo}', -1)" ${esgotado ? 'disabled' : ''}>-</button>
                                     <span id="qtd-${prod.codigo}">${qtdAtual}</span>
@@ -377,15 +352,12 @@
                         </div>
                     `;
                 });
-                
                 htmlFinal += `</div>`;
             }
-
             menuCategorias.innerHTML = htmlMenu;
             divLista.innerHTML = htmlFinal;
         }
 
-        // Google Sheets
         function carregarDoGoogleSheets() {
             fetch(WEB_APP_URL)
                 .then(response => response.json())
@@ -394,19 +366,11 @@
                         document.getElementById('loading').innerText = "Erro: " + data.erro;
                         return;
                     }
-
                     produtos = data.map(row => ({
-                        codigo: row['Código'],
-                        tipo: row['Tipo'],
-                        nome: row['Produtos'], 
-                        unidade: row['Unidade'],
-                        preco: String(row['Preço']).replace(',', '.'), 
-                        descricao: row['Descrição'],
-                        imagem: row['Imagem (URL)'],
-                        promocao: String(row['Promoção']),
-                        disponivel: String(row['Status'])
+                        codigo: row['Código'], tipo: row['Tipo'], nome: row['Produtos'], unidade: row['Unidade'],
+                        preco: String(row['Preço']).replace(',', '.'), descricao: row['Descrição'],
+                        imagem: row['Imagem (URL)'], promocao: String(row['Promoção']), disponivel: String(row['Status'])
                     })).filter(p => p.nome); 
-                    
                     renderizarProdutos(produtos);
                 })
                 .catch(error => {
@@ -415,122 +379,24 @@
                 });
         }
 
-        // Funções da Modal
-        function abrirRevisao() {
-            const nome = document.getElementById('clienteNome').value;
-            const entrega = document.getElementById('tipoEntrega').value;
-            const dataPed = document.getElementById('dataPedido').value;
-            const pagamento = document.getElementById('formaPagamento').value;
-            
-            if(!nome || !entrega || !dataPed || !pagamento) {
-                alert("Por favor, preencha todos os dados do pedido (Nome, Entrega, Data e Pagamento).");
-                return;
-            }
+        // ==========================================
+        // FUNÇÕES DO GERADOR DE PIX (BR CODE)
+        // ==========================================
+        function gerarPayloadPix(chave, valor) {
+            const nomeStr = "JUH MORANGOS";
+            const cidadeStr = "JARDINOPOLIS";
+            const txid = "PEDIDO"; 
 
-            const dataFormatada = dataPed.split('-').reverse().join('/');
+            const format = (id, value) => `${id}${value.length.toString().padStart(2, '0')}${value}`;
 
-            let total = 0;
-            let temItens = false;
-            let itensListaHtml = "<ul>";
-            let itensTextoZap = "";
+            const payloadFormat = "000201";
+            const merchantAccount = format("26", format("00", "br.gov.bcb.pix") + format("01", chave));
+            const merchantCategory = format("52", "0000");
+            const currency = format("53", "986");
+            const amount = valor > 0 ? format("54", valor.toFixed(2)) : "";
+            const country = format("58", "BR");
+            const merchantName = format("59", nomeStr);
+            const merchantCity = format("60", cidadeStr);
+            const additionalData = format("62", format("05", txid));
 
-            for (let cod in carrinho) {
-                if (carrinho[cod] > 0) {
-                    temItens = true;
-                    const prod = produtos.find(p => p.codigo == cod);
-                    const subtotal = carrinho[cod] * parseFloat(prod.preco);
-                    total += subtotal;
-                    
-                    // --- MUDANÇA AQUI: Pegando o preço unitário e a unidade da planilha ---
-                    const precoUnit = parseFloat(prod.preco).toFixed(2).replace('.', ',');
-                    const unidadeProd = prod.unidade ? prod.unidade : 'un.'; // Se não tiver unidade, usa 'un.' por padrão
-                    
-                    // Mostra na tela do site: 2x Morango (R$ 20,00 / cx) - R$ 40,00
-                    itensListaHtml += `<li>${carrinho[cod]}x ${prod.nome} (R$ ${precoUnit} / ${unidadeProd}) - R$ ${subtotal.toFixed(2).replace('.', ',')}</li>`;
-                    
-                    // Envia pro Zap: - 2x Morango | R$ 20,00 / cx -> R$ 40,00
-                    itensTextoZap += `- ${carrinho[cod]}x ${prod.nome} | R$ ${precoUnit} / ${unidadeProd} -> R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
-                    // -----------------------------------------------------------------------
-                }
-            }
-            itensListaHtml += "</ul>";
-
-            if(!temItens) {
-                alert("Adicione pelo menos um produto ao carrinho antes de revisar!");
-                return;
-            }
-
-            let resumoHtml = `<p><strong>Nome:</strong> ${nome}</p>`;
-            resumoHtml += `<p><strong>Data:</strong> ${dataFormatada}</p>`;
-            resumoHtml += `<p><strong>Tipo:</strong> ${entrega}</p>`;
-            
-            let textoEnderecoZap = "";
-            if(entrega === 'Entrega') {
-                const end = document.getElementById('enderecoCliente').value;
-                if(!end) return alert("Por favor, informe o endereço de entrega.");
-                resumoHtml += `<p><strong>Endereço:</strong> ${end}</p>`;
-                textoEnderecoZap = `*Endereço:* ${end}\n`;
-            } else {
-                resumoHtml += `<p><strong>Retirar em:</strong> Rua Marechal Deodoro Nº 35</p>`;
-                textoEnderecoZap = `*Retirar em:* Rua Marechal Deodoro Nº 35, Jardinópolis-SP\n`;
-            }
-
-            resumoHtml += `<p><strong>Pagamento:</strong> ${pagamento}</p>`;
-            let textoTrocoZap = "";
-            if(pagamento === 'Dinheiro') {
-                const troco = document.getElementById('troco').value || 'Não precisa';
-                resumoHtml += `<p><strong>Troco:</strong> ${troco}</p>`;
-                textoTrocoZap = `*Troco:* ${troco}\n`;
-            }
-
-            resumoHtml += `<hr><p><strong>Itens:</strong></p>${itensListaHtml}`;
-            resumoHtml += `<h3>Total: R$ ${total.toFixed(2).replace('.', ',')}</h3>`;
-
-            document.getElementById('resumoPedidoHtml').innerHTML = resumoHtml;
-
-            textoParaWhatsAppGlobal = `*NOVO PEDIDO - JUH MORANGOS E CONGELADOS* 🍓\n\n`;
-            textoParaWhatsAppGlobal += `*Cliente:* ${nome}\n`;
-            textoParaWhatsAppGlobal += `*Data:* ${dataFormatada}\n`;
-            textoParaWhatsAppGlobal += `*Tipo:* ${entrega}\n`;
-            textoParaWhatsAppGlobal += textoEnderecoZap;
-            textoParaWhatsAppGlobal += `*Pagamento:* ${pagamento}\n`;
-            textoParaWhatsAppGlobal += textoTrocoZap;
-            textoParaWhatsAppGlobal += `\n*ITENS DO PEDIDO:*\n`;
-            textoParaWhatsAppGlobal += itensTextoZap;
-            textoParaWhatsAppGlobal += `\n*TOTAL: R$ ${total.toFixed(2).replace('.', ',')}*`;
-
-            document.getElementById('modalRevisao').classList.remove('hidden');
-        }
-
-        function fecharRevisao() {
-            document.getElementById('modalRevisao').classList.add('hidden');
-        }
-
-        function confirmarEnvioWhatsApp() {
-            const url = `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(textoParaWhatsAppGlobal)}`;
-            window.open(url, '_blank');
-            
-            fecharRevisao();
-            limparFormulario();
-        }
-
-        function limparFormulario() {
-            document.getElementById('clienteNome').value = '';
-            document.getElementById('tipoEntrega').value = '';
-            document.getElementById('enderecoCliente').value = '';
-            document.getElementById('dataPedido').value = '';
-            document.getElementById('formaPagamento').value = '';
-            document.getElementById('troco').value = '';
-            
-            toggleEntrega();
-            togglePagamento();
-            
-            carrinho = {};
-            renderizarProdutos(produtos);
-            atualizarFooter();
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    </script>
-</body>
-</html>
+            const payload = payloadFormat + merchantAccount + merchantCategory + currency + amount + country
