@@ -399,4 +399,135 @@
             const merchantCity = format("60", cidadeStr);
             const additionalData = format("62", format("05", txid));
 
-            const payload = payloadFormat + merchantAccount + merchantCategory + currency + amount + country
+            const payload = payloadFormat + merchantAccount + merchantCategory + currency + amount + country + merchantName + merchantCity + additionalData + "6304";
+
+            let crc = 0xFFFF;
+            for (let i = 0; i < payload.length; i++) {
+                crc ^= payload.charCodeAt(i) << 8;
+                for (let j = 0; j < 8; j++) {
+                    crc = (crc & 0x8000) ? (crc << 1) ^ 0x1021 : crc << 1;
+                }
+            }
+            return payload + (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, '0');
+        }
+
+        function copiarPix() {
+            const input = document.getElementById('codigoPixCopiaCola');
+            input.select();
+            input.setSelectionRange(0, 99999); // Para mobile
+            document.execCommand("copy");
+            alert("Código Pix copiado! Agora é só colar no app do seu banco.");
+        }
+        // ==========================================
+
+        function abrirRevisao() {
+            const nome = document.getElementById('clienteNome').value;
+            const entrega = document.getElementById('tipoEntrega').value;
+            const dataPed = document.getElementById('dataPedido').value;
+            const pagamento = document.getElementById('formaPagamento').value;
+            
+            if(!nome || !entrega || !dataPed || !pagamento) {
+                alert("Por favor, preencha todos os dados do pedido (Nome, Entrega, Data e Pagamento).");
+                return;
+            }
+
+            const dataFormatada = dataPed.split('-').reverse().join('/');
+            let total = 0;
+            let temItens = false;
+            let itensListaHtml = "<ul>";
+            let itensTextoZap = "";
+
+            for (let cod in carrinho) {
+                if (carrinho[cod] > 0) {
+                    temItens = true;
+                    const prod = produtos.find(p => p.codigo == cod);
+                    const subtotal = carrinho[cod] * parseFloat(prod.preco);
+                    total += subtotal;
+                    
+                    const precoUnit = parseFloat(prod.preco).toFixed(2).replace('.', ',');
+                    const unidadeProd = prod.unidade ? prod.unidade : 'un.'; 
+                    
+                    itensListaHtml += `<li>${carrinho[cod]}x ${prod.nome} (R$ ${precoUnit} / ${unidadeProd}) - R$ ${subtotal.toFixed(2).replace('.', ',')}</li>`;
+                    itensTextoZap += `- ${carrinho[cod]}x ${prod.nome} | R$ ${precoUnit} / ${unidadeProd} -> R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
+                }
+            }
+            itensListaHtml += "</ul>";
+
+            if(!temItens) {
+                alert("Adicione pelo menos um produto ao carrinho antes de revisar!");
+                return;
+            }
+
+            let resumoHtml = `<p><strong>Nome:</strong> ${nome}</p><p><strong>Data:</strong> ${dataFormatada}</p><p><strong>Tipo:</strong> ${entrega}</p>`;
+            let textoEnderecoZap = "";
+            
+            if(entrega === 'Entrega') {
+                const end = document.getElementById('enderecoCliente').value;
+                if(!end) return alert("Por favor, informe o endereço de entrega.");
+                resumoHtml += `<p><strong>Endereço:</strong> ${end}</p>`;
+                textoEnderecoZap = `*Endereço:* ${end}\n`;
+            } else {
+                resumoHtml += `<p><strong>Retirar em:</strong> Rua Marechal Deodoro Nº 35</p>`;
+                textoEnderecoZap = `*Retirar em:* Rua Marechal Deodoro Nº 35, Jardinópolis-SP\n`;
+            }
+
+            resumoHtml += `<p><strong>Pagamento:</strong> ${pagamento}</p>`;
+            let textoTrocoZap = "";
+            if(pagamento === 'Dinheiro') {
+                const troco = document.getElementById('troco').value || 'Não precisa';
+                resumoHtml += `<p><strong>Troco:</strong> ${troco}</p>`;
+                textoTrocoZap = `*Troco:* ${troco}\n`;
+            }
+
+            resumoHtml += `<hr><p><strong>Itens:</strong></p>${itensListaHtml}<h3>Total: R$ ${total.toFixed(2).replace('.', ',')}</h3>`;
+            document.getElementById('resumoPedidoHtml').innerHTML = resumoHtml;
+
+            // === LÓGICA DO PIX NA TELA DE REVISÃO ===
+            if (pagamento === 'Pix') {
+                const payloadPix = gerarPayloadPix(CHAVE_PIX, total);
+                document.getElementById('codigoPixCopiaCola').value = payloadPix;
+                // Usa uma API pública confiável e gratuita para gerar a imagem do QR Code
+                document.getElementById('qrCodePix').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(payloadPix)}`;
+                document.getElementById('pixArea').classList.remove('hidden');
+            } else {
+                document.getElementById('pixArea').classList.add('hidden');
+            }
+            // ========================================
+
+            textoParaWhatsAppGlobal = `*NOVO PEDIDO - JUH MORANGOS E CONGELADOS* 🍓\n\n*Cliente:* ${nome}\n*Data:* ${dataFormatada}\n*Tipo:* ${entrega}\n${textoEnderecoZap}*Pagamento:* ${pagamento}\n${textoTrocoZap}\n*ITENS DO PEDIDO:*\n${itensTextoZap}\n*TOTAL: R$ ${total.toFixed(2).replace('.', ',')}*`;
+            
+            if (pagamento === 'Pix') {
+                textoParaWhatsAppGlobal += `\n\n_(Cliente optou por Pix, aguardando envio do comprovante)_`;
+            }
+
+            document.getElementById('modalRevisao').classList.remove('hidden');
+        }
+
+        function fecharRevisao() {
+            document.getElementById('modalRevisao').classList.add('hidden');
+        }
+
+        function confirmarEnvioWhatsApp() {
+            const url = `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(textoParaWhatsAppGlobal)}`;
+            window.open(url, '_blank');
+            fecharRevisao();
+            limparFormulario();
+        }
+
+        function limparFormulario() {
+            document.getElementById('clienteNome').value = '';
+            document.getElementById('tipoEntrega').value = '';
+            document.getElementById('enderecoCliente').value = '';
+            document.getElementById('dataPedido').value = '';
+            document.getElementById('formaPagamento').value = '';
+            document.getElementById('troco').value = '';
+            toggleEntrega();
+            togglePagamento();
+            carrinho = {};
+            renderizarProdutos(produtos);
+            atualizarFooter();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
